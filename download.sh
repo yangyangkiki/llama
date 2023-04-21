@@ -1,9 +1,9 @@
 # Copyright (c) Meta Platforms, Inc. and affiliates.
 # This software may be used and distributed according to the terms of the GNU General Public License version 3.
 
-PRESIGNED_URL=""             # replace with presigned url from email
-MODEL_SIZE="7B,13B,30B,65B"  # edit this list with the model sizes you wish to download
-TARGET_FOLDER=""             # where all files should end up
+PRESIGNED_URL="https://protect-au.mimecast.com/s/JDs-CWLVNlFl1GVDI6yXnm?domain=dobf1k6cxlizq.cloudfront.net"             # replace with presigned url from email
+MODEL_SIZE="7B"  # edit this list with the model sizes you wish to download # MODEL_SIZE="7B,13B,30B,65B"
+TARGET_FOLDER="/home/yangzhao/Documents/Medical_Research_Datasets/llama"             # where all files should end up
 
 declare -A N_SHARD_DICT
 

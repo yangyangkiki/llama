@@ -14,7 +14,7 @@ from pathlib import Path
 from fairscale.nn.model_parallel.initialize import initialize_model_parallel
 
 from llama import ModelArgs, Transformer, Tokenizer, LLaMA
-
+import time
 
 def setup_model_parallel() -> Tuple[int, int]:
     local_rank = int(os.environ.get("LOCAL_RANK", -1))
@@ -106,9 +106,13 @@ plush girafe => girafe peluche
 
 cheese =>""",
     ]
+    start = time.time()
     results = generator.generate(
         prompts, max_gen_len=256, temperature=temperature, top_p=top_p
     )
+    end = time.time()
+
+    print('time:', (end-start))
 
     for result in results:
         print(result)
@@ -117,3 +121,13 @@ cheese =>""",
 
 if __name__ == "__main__":
     fire.Fire(main)
+
+# Yang
+# The provided example.py can be run on a single or multi-gpu node with torchrun and will output completions for
+# two pre-defined prompts. Using TARGET_FOLDER as defined in download.sh:
+
+# soft link from phoenix -- too slow:
+# torchrun --nproc_per_node 1 example.py --ckpt_dir ./llama_ipfs_models/7B --tokenizer_path ./llama_ipfs_models/tokenizer.model
+
+# local model -- 7B:
+# torchrun --nproc_per_node 1 example.py --ckpt_dir /home/yangzhao/Documents/Medical_Research_Datasets/llama/7B --tokenizer_path /home/yangzhao/Documents/Medical_Research_Datasets/llama/tokenizer.model
